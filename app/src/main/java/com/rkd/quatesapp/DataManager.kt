@@ -20,6 +20,6 @@ object DataManager{
 
         val gson = Gson()
         data = gson.fromJson(json, Array<Quotes>::class.java)
-
+        isDataLoaded.value = true
     }
 }

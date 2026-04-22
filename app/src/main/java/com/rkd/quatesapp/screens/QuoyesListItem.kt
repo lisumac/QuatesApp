@@ -33,7 +33,7 @@ import com.rkd.quatesapp.model.Quotes
 fun QuoteListItem(quotes: Quotes, onClick: ()-> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
-        modifier = Modifier
+        modifier = Modifier.fillMaxWidth(200f)
             .padding(12.dp).clickable{onClick()}
     ) {
         Row(Modifier.padding(12.dp)) {
