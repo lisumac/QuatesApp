@@ -11,23 +11,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rkd.quatesapp.screens.DetailsOfQuotes
+import com.rkd.quatesapp.screens.QuoteListItem
+import com.rkd.quatesapp.screens.QuoteListScreen
 import com.rkd.quatesapp.ui.theme.QuatesAppTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        CoroutineScope(Dispatchers.IO).launch{
+            DataManager.loadAssetFromFile(applicationContext)
+        }
+
         setContent {
-            QuatesAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            App()
+
         }
     }
+}
+
+@Composable
+fun App() {
+    if (DataManager.isDataLoaded.value) {
+        QuoteListScreen(ArrayList(DataManager.data.toList()), onClick = {
+
+        })
+    }
+
 }
 
 @Composable
