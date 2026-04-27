@@ -30,11 +30,11 @@ import com.rkd.quatesapp.model.Quotes
 
 
 @Composable
-fun QuoteListItem(quotes: Quotes, onClick: ()-> Unit) {
+fun QuoteListItem(quotes: Quotes, onClick: (quotes: Quotes)-> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier.fillMaxWidth(200f)
-            .padding(12.dp).clickable{onClick()}
+            .padding(12.dp).clickable{onClick(quotes)}
     ) {
         Row(Modifier.padding(12.dp)) {
 

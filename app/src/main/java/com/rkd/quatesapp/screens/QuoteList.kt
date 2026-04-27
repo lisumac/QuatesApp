@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import com.rkd.quatesapp.model.Quotes
 
 @Composable()
-fun QuoteList(data: ArrayList<Quotes>, onClick: ()-> Unit){
+fun QuoteList(data: ArrayList<Quotes>, onClick: (quotes: Quotes)-> Unit){
     LazyColumn(modifier = Modifier.fillMaxWidth(200f)) {
         items(data) { data->
             QuoteListItem(data,onClick )

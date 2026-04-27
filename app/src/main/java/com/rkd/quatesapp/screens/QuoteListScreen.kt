@@ -11,17 +11,17 @@ import androidx.compose.ui.unit.dp
 import com.rkd.quatesapp.model.Quotes
 
 @Composable
-fun QuoteListScreen(data: ArrayList<Quotes>, onClick: () -> Unit) {
+fun QuoteListScreen(data: ArrayList<Quotes>, onClick: (quotes: Quotes) -> Unit) {
     Column() {
         Text(
-           text =  "QuoteListApp",
+            text = "QuoteListApp",
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .padding(8.dp, 12.dp)
                 .fillMaxWidth(1f),
 
 
-        )
+            )
 
         QuoteList(data = data, onClick)
     }
