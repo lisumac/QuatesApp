@@ -5,10 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import com.google.gson.Gson
 import com.rkd.quatesapp.model.Quotes
 
-object DataManager{
+object DataManager {
     var data = emptyArray<Quotes>()
-    var isDataLoaded=   mutableStateOf(false)
-    fun loadAssetFromFile(context: Context, ){
+    var isDataLoaded = mutableStateOf(false)
+    var currentPage = mutableStateOf(Pages.LISTING)
+    var currentQuotes: Quotes? = null
+    fun loadAssetFromFile(context: Context) {
         val inputStream = context.assets.open("quotes.json")
         val size = inputStream.available()
 
@@ -22,4 +24,14 @@ object DataManager{
         data = gson.fromJson(json, Array<Quotes>::class.java)
         isDataLoaded.value = true
     }
+
+    fun switchPages(quotes: Quotes?) {
+        if (currentPage.value == Pages.LISTING) {
+            currentQuotes= quotes
+            currentPage.value = Pages.DETAILS
+        } else {
+            currentPage.value = Pages.LISTING
+        }
+    }
+
 }
